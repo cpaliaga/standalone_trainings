@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_bits.c                                         :+:      :+:    :+:   */
+/*   get_my_bits.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caliaga- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,18 +11,39 @@
 /* ************************************************************************** */
 #include <stdio.h>
 
+int get_my_bits(unsigned char c)
+{
+	int octet[8];
+	int bits[8];
+	int i;
+
+	octet[0] = 1;
+	octet[1] = 2;
+	octet[2] = 4;
+	octet[3] = 8;
+	octet[4] = 16;
+	octet[5] = 32;
+	octet[6] = 64;
+	octet[7] = 128;
+	i = -1;
+	while (++i < 8)
+	{
+		if ((c & octet[i]) != 0)
+			bits[i] = 1;
+		else
+			bits[i] = (c & octet[i]);
+	}
+	return(bits);
+}
+
 int main()
 {
 	unsigned char c = '*';
-	int bits[8]={1,2,4,8,16,32,64,128};
+	int *bits = get_my_bits(c, bits);
 	int i = 0;
 	while (i < 8)
-	{
-		if ((c & bits[i]) != 0)
-			printf("1 - ");
-		else
-			printf("%d - ", (c & bits[i]));
-		i++;
-	}
+		printf("%d", bits[i++]);
+	printf("\n");
+
 	return (0);
 }

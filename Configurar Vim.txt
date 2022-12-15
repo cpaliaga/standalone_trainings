@@ -1,0 +1,21 @@
+el fichero de configuración de vim es
+~/,vimrc
+set expandtab
+set tabstop=4
+set mouse=a
+set clipboard=unamed
+syntax enable
+set showcmd
+set ruler
+set encoding=utf-8
+set showmatch
+set sw=4
+set number
+set cursorline
+
+PLUGGINS
+https://www.linode.com/docs/guides/writing-a-vim-plugin/
+el fichero de configuración de vim es
+~/,vimrc
+call plug#begin('~/.vim/plugged')
+call plug#end('')
