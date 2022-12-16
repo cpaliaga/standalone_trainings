@@ -10,11 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include <stdio.h>
+#include <stdlib.h>
 
-int get_my_bits(unsigned char c)
+char *get_my_bits(unsigned char c)
 {
 	int octet[8];
-	int bits[8];
+	char *bits;
 	int i;
 
 	octet[0] = 1;
@@ -25,13 +26,16 @@ int get_my_bits(unsigned char c)
 	octet[5] = 32;
 	octet[6] = 64;
 	octet[7] = 128;
+	bits = malloc(9 * sizeof(char));
+	if (!bits)
+		return (NULL);
 	i = -1;
 	while (++i < 8)
 	{
 		if ((c & octet[i]) != 0)
-			bits[i] = 1;
+			bits[i] = '1';
 		else
-			bits[i] = (c & octet[i]);
+			bits[i] = '0';
 	}
 	return(bits);
 }
@@ -39,10 +43,10 @@ int get_my_bits(unsigned char c)
 int main()
 {
 	unsigned char c = '*';
-	int *bits = get_my_bits(c, bits);
+	char *bits = get_my_bits(c);
 	int i = 0;
 	while (i < 8)
-		printf("%d", bits[i++]);
+		printf("%c", bits[i++]);
 	printf("\n");
 
 	return (0);
