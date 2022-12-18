@@ -1,15 +1,11 @@
-alias alias_name="command_to_run"
-El alias ll solo estará disponible en la sesión de shell actual. 
-Si cierra la sesión o abre una nueva sesión desde otro terminal, 
-el alias no estará disponible.
-gcc -Wall -Wextra - Werror -pedantic
-Para conservar el alias, debe declararse en el archivo ~ /.bash_profile o ~ /.bashrc.
-# Aliases
- # alias alias_name="command_to_run"
+CREATE alias : by sesion
+alias g="gcc -Wall -Wextra - Werror -pedantic"
 
+To get persistence, must be declared in "~/.bash_profile" or "~/.bashrc" file.
+# Examples
+# alias alias_name="command_to_run"
  # Long format list
  alias ll="ls -la"
-
  # Print my public IP
  alias pubip='curl ipinfo.io/ip'
  https://noviello.it/es/como-crear-alias-de-bash-en-linux/
