@@ -9,7 +9,7 @@
 /* Dependencias para SIZE_MAX*/
 # include <stdint.h>
 
-# define BUFF_SIZE 2000000
+# define BUFF_SIZE 200
 
 char	*read_a_file(char *url)
 {
@@ -21,7 +21,7 @@ char	*read_a_file(char *url)
 	/** CREAR UN MALLOC CON CONTROL DEL COMPORTAMIENTO **/
 	if ((BUFF_SIZE * sizeof(char)) > SIZE_MAX)
 		return (NULL);
-	buff = malloc (BUFF_SIZE * sizeof(char));
+	buff = malloc (BUFF_SIZE + 1 * sizeof(char));
 	if (!buff)
 		return (NULL);
 	
@@ -30,15 +30,16 @@ char	*read_a_file(char *url)
 	fd = open((char *)url, O_RDONLY);
 	if (fd == -1)
 		return (NULL);
-
-    /** READ THE FILE AND PUT THE CONTENT IN MALLOC **/
+	//printf("File descriptor %d\n", fd);
+    
+	/** READ THE FILE AND PUT THE CONTENT IN MALLOC **/
 	/** LEER EL ARCHIVO Y PONER EL CONTENIDO EN MALLOC **/
 	read_bytes = read(fd, buff, BUFF_SIZE);
-	buff[read_bytes + 1] = '\0';
     
-    /** CLOSE THE MALLOC STRING ​**/
-	/** CIERRAS LA CADENA DEL MALLOC **/
-	buff[read_bytes] = '\0';
+    /** CLOSE THE STRING ​**/
+	/** CIERRAS LA CADENA **/
+	buff[read_bytes + 1] = '\0';
+	//printf("Bytes leidos %zu\n", read_bytes);
 	
 	/** CLOSE THE FILE **/
     /** CERRAR EL ARCHIVO **/
